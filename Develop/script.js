@@ -66,8 +66,7 @@ var generatePassword = function() {
     numTypes = numTypes - 1;
   };
 
-  console.log(tempPass);
-  //return shuffle(tempPass);
+  return shuffle(tempPass);
 }
 
 var getPassLength = function() {
@@ -113,8 +112,18 @@ var getCharacters = function(arr,num) {
 };
 
 var shuffle = function(pass) {
+  var arr = pass.split("");
+  var n = arr.length;
 
-}
+  for (i=0; i<n-1; i++) {
+    var j = Math.floor(Math.random() * n);
+    var temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+  }
+
+  return arr.join("");
+};
 
 
 // Get references to the #generate element
