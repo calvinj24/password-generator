@@ -28,6 +28,8 @@ var generatePassword = function() {
     numLowercase = getNumOfCharacters(numRemaining,numTypes);
     console.log(numLowercase);
 
+    tempPass = tempPass + getCharacters(lowercaseArray,numLowercase);
+
     numRemaining = numRemaining - numLowercase;
     numTypes = numTypes - 1;
   };
@@ -35,6 +37,8 @@ var generatePassword = function() {
   if (characterTypes.up) {
     numUppercase = getNumOfCharacters(numRemaining,numTypes);
     console.log(numUppercase);
+
+    tempPass = tempPass + getCharacters(uppercaseArray,numUppercase);
 
     numRemaining = numRemaining - numUppercase;
     numTypes = numTypes - 1;
@@ -45,6 +49,8 @@ var generatePassword = function() {
     numNumeric = getNumOfCharacters(numRemaining,numTypes);
     console.log(numNumeric);
 
+    tempPass = tempPass + getCharacters(numericArray,numNumeric);
+
     numRemaining = numRemaining - numNumeric;
     numTypes = numTypes - 1;
   };
@@ -54,11 +60,14 @@ var generatePassword = function() {
     numSpecial = getNumOfCharacters(numRemaining,numTypes);
     console.log(numSpecial);
 
+    tempPass = tempPass + getCharacters(specialArray,numSpecial);
+
     numRemaining = numRemaining - numSpecial;
     numTypes = numTypes - 1;
   };
 
-  return shuffle(tempPass);
+  console.log(tempPass);
+  //return shuffle(tempPass);
 }
 
 var getPassLength = function() {
@@ -95,7 +104,12 @@ var getNumOfCharacters = function(numRemaining,numTypes) {
 };
 
 var getCharacters = function(arr,num) {
-
+  var temp = "";
+  for (i=0; i<num; i++) {
+    index = Math.floor(Math.random() * arr.length);
+    temp = temp + arr[index]
+  }
+  return (temp);
 };
 
 var shuffle = function(pass) {
